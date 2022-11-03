@@ -93,7 +93,6 @@ export const Hero: React.FC<IHero> = ({ fields }) => {
               {fields.image.fields?.file.details.image && (
                 <Image
                   loader={ContentfulImageLoader}
-                  layout="fixed"
                   src={`https:${fields.image.fields.file.url}`}
                   width={
                     (fields.image.fields.file.details.image.width *
