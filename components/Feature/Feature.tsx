@@ -92,7 +92,7 @@ export const Feature: React.FC<IFeature> = ({ fields }) => {
                 320,
                 fields.image.fields.file.details.image.height
               )}
-              className="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none"
+              className="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto"
               alt=""
             />
           )}

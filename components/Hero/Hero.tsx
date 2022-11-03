@@ -7,6 +7,27 @@ import { ContentfulImageLoader } from '@/lib/helperfunctions';
 import { IHero } from '@/types/contentful';
 
 export const Hero: React.FC<IHero> = ({ fields }) => {
+  let maxHeight = 0;
+  let maxWidth = 0;
+  let heroImageStyle = {
+    maxWidth,
+    maxHeight,
+  };
+
+  if (fields.image.fields?.file.details.image) {
+    maxHeight = Math.min(590, fields.image.fields.file.details.image.height);
+
+    maxWidth =
+      (fields.image.fields.file.details.image.width *
+        Math.min(590, fields.image.fields.file.details.image.height)) /
+      fields.image.fields.file.details.image.height;
+
+    heroImageStyle = {
+      maxWidth,
+      maxHeight,
+    };
+  }
+
   return (
     <div className="bg-white pb-8 sm:pb-12 lg:pb-12">
       <div className="pt-8 overflow-hidden sm:pt-12 lg:relative lg:py-48">
@@ -34,7 +55,7 @@ export const Hero: React.FC<IHero> = ({ fields }) => {
                     <div key={button.sys.id} className="shadow">
                       <Link passHref href={button.fields.slug}>
                         <Button
-                          as="a"
+                          as="div"
                           type="button"
                           variant={button.fields.variant as ButtonVariant}
                           size="large"
@@ -92,21 +113,12 @@ export const Hero: React.FC<IHero> = ({ fields }) => {
             <div className="hidden relative pl-4 -mr-40 sm:mx-auto sm:max-w-3xl lg:max-w-none lg:pl-12 md:block">
               {fields.image.fields?.file.details.image && (
                 <Image
+                  style={heroImageStyle}
                   loader={ContentfulImageLoader}
                   src={`https:${fields.image.fields.file.url}`}
-                  width={
-                    (fields.image.fields.file.details.image.width *
-                      Math.min(
-                        590,
-                        fields.image.fields.file.details.image.height
-                      )) /
-                    fields.image.fields.file.details.image.height
-                  }
-                  height={Math.min(
-                    590,
-                    fields.image.fields.file.details.image.height
-                  )}
-                  className="w-full rounded-lg shadow-xl ring-1 ring-black ring-opacity-5 lg:w-auto lg:max-w-none"
+                  width={maxWidth}
+                  height={maxHeight}
+                  className="w-full rounded-lg shadow-xl ring-1 ring-black ring-opacity-5 lg:w-auto"
                   alt=""
                 />
               )}
@@ -117,19 +129,9 @@ export const Hero: React.FC<IHero> = ({ fields }) => {
                 <Image
                   loader={ContentfulImageLoader}
                   src={`https:${fields.image.fields.file.url}`}
-                  width={
-                    (fields.image.fields.file.details.image.width *
-                      Math.min(
-                        320,
-                        fields.image.fields.file.details.image.height
-                      )) /
-                    fields.image.fields.file.details.image.height
-                  }
-                  height={Math.min(
-                    320,
-                    fields.image.fields.file.details.image.height
-                  )}
-                  className="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto lg:max-w-none"
+                  width={maxWidth}
+                  height={maxHeight}
+                  className="w-full rounded-md shadow-xl ring-1 ring-black ring-opacity-5 lg:h-full lg:w-auto"
                   alt=""
                 />
               )}

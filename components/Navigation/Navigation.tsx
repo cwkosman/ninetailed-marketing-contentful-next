@@ -11,7 +11,7 @@ export const Navigation: React.FC<INavigation> = ({ fields }) => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex justify-between items-center w-full py-6 border-b-2 border-gray-100 ">
           <div className="flex justify-start">
-            <Link href="/">
+            <Link passHref href="/">
               <span className="sr-only">Workflow</span>
               <Image src={Logo as string} width={175} height={57} alt="Logo" />
             </Link>
