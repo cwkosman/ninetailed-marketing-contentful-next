@@ -3,6 +3,7 @@ import '@/styles/globals.css';
 import { AppProps } from 'next/app';
 import { NinetailedProvider } from '@ninetailed/experience.js-next';
 import { NinetailedPreviewPlugin } from '@ninetailed/experience.js-plugin-preview';
+import { NinetailedPrivacyPlugin } from '@ninetailed/experience.js-plugin-privacy';
 
 const B2BDemoApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -17,6 +18,14 @@ const B2BDemoApp = ({ Component, pageProps }: AppProps) => {
             environment:
               process.env.NEXT_PUBLIC_NINETAILED_ENVIRONMENT ?? 'main',
             ui: { opener: { hide: false } },
+          }),
+          NinetailedPrivacyPlugin({
+            allowedEvents: ['page', 'identify'], // ['page', 'track]
+            allowedPageEventProperties: ['*'], // ['*']
+            allowedTrackEvents: [], // []
+            allowedTrackEventProperties: [], // []
+            allowedTraits: ['*'], // []
+            blockProfileMerging: false, // flase
           }),
         ]}
         clientId={process.env.NEXT_PUBLIC_NINETAILED_CLIENT_ID ?? ''}
