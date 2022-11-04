@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { useNinetailed, useProfile } from '@ninetailed/experience.js-next';
 import { Field, Form as ContactForm } from 'react-final-form';

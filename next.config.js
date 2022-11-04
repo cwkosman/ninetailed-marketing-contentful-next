@@ -5,6 +5,6 @@ module.exports = (phase, { defaultConfig }) => {
   return {
     ...defaultConfig,
     reactStrictMode: true,
-    swcMinify: true,
+    experimental: { appDir: true },
   };
 };
